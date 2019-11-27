@@ -5,6 +5,7 @@ defmodule WithCheckTest do
     value = "foo"
 
     result =
+      # credo does not object to this usage
       with "bar" <- value do
         :ok
       end
@@ -16,6 +17,7 @@ defmodule WithCheckTest do
     assert_raise WithClauseError, "no with clause matching: \"foo\"", fn ->
       value = "foo"
 
+      # credo sees this as a refactoring opportunity
       with "bar" <- value do
         :ok
       else
